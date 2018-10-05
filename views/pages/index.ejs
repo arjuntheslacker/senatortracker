@@ -3,16 +3,47 @@
 <head>
   <title>Senators Tracker</title>
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <style>
+    #outPopUp {
+      position: absolute;
+      width: 700px;
+      height: 500px;
+      z-index: 15;
+      top: 50%;
+      left: 50%;
+      margin: -250px 0 0 -350px;
+      text-align: center;
+    }
+    a {
+      color: inherit;
+    }
+    a:hover {
+      color: black;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body>
-
-<div style="display:flex;justify-content:center;align-items:center;">
-Have the Ottawa Senators Fucked up today? <br />
-Yes! (0 days since the last fuck up)<br />
+<div id='outPopUp'>
+  <div style='width: 100%; position:absolute; top: 0%; text-align: center;'>
+    <img src="ek.jpg" width="200px" height="200px">
+    <h1> Have the Ottawa Senators fucked up today?</h1>
+    <h2> <a id='answer'></a> (<a id="diff"></a> days since they last fucked up).</h2>
+  </div>
 </div>
-
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script>
+  let last = new moment('2018-10-04');
+  let today = new moment();
+  let diff = today.diff(last, 'days');
+  $("#diff").html(diff);
+  if (diff == 0) {
+    $("#answer").html("Yes!");
+  } else {
+    $("#answer").html("No");
+  }
+</script>
 </html>
